@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Peluquería Bella Imagen</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .video-fondo {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .contenido {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .contenido a {
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    .contenido a:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎥 Video de fondo -->
+  <video autoplay muted loop class="video-fondo">
+    <source src="/videos/peluqueria.mp4" type="video/mp4">
+    Tu navegador no soporta videos HTML5.
+  </video>
+
+  <!-- 📋 Contenido encima del video -->
+  <div class="contenido">
+    <h1>Peluquería Bella Imagen</h1>
+
+    <% if (user) { %>
+      <p>Bienvenido, <strong><%= user.nombre %></strong></p>
+      <a href="/booking">Reservar cita</a>
+      <a href="/mis-citas">Mis citas</a>
+      <% if (user.rol === 'admin') { %>
+        <a href="/admin">Panel Admin</a>
+      <% } %>
+      <a href="/logout">Cerrar sesión</a>
+    <% } else { %>
+      <a href="/login">Iniciar sesión</a>
+      <a href="/register">Registrarse</a>
+    <% } %>
+  </div>
+
+</body>
+</html>
+

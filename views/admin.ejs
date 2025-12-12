@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Administrador - Bella Imagen</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .highlight {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Panel de Administración</h2>
+    <a href="/logout" title="Cerrar sesión" class="highlight">🔒 Cerrar sesión</a>
+  </header>
+
+  <section>
+    <p><strong>Total de citas:</strong> <%= totalCitas %></p>
+    <p><strong>Total de clientes:</strong> <%= totalClientes %></p>
+
+    <p>
+      <a href="/admin/clientes" class="highlight">👥 Ver clientes registrados</a>
+    </p>
+  </section>
+
+  <section>
+    <h3>Citas registradas</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Servicio</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% citas.forEach(c => { %>
+          <tr>
+            <td><%= c.clienteId.nombre %></td>
+            <td><%= c.servicio %></td>
+            <td><%= c.fecha %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </section>
+
+</body>
+</html>
+

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro - Bella Imagen</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 450px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      margin: 0 0 10px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .volver {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    .volver:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>📝 Registro de Cliente</h2>
+
+    <form id="registroForm" method="POST" action="/register" novalidate>
+      <label for="nombre">Nombre completo:</label>
+      <input type="text" name="nombre" id="nombre" required>
+      <p class="error" id="error-nombre"></p>
+
+      <label for="email">Correo electrónico:</label>
+      <input type="email" name="email" id="email" required>
+      <p class="error" id="error-email"></p>
+
+      <label for="telefono">Número de teléfono:</label>
+      <input type="tel" name="telefono" id="telefono" required>
+      <p class="error" id="error-telefono"></p>
+
+      <label for="password">Contraseña:</label>
+      <input type="password" name="password" id="password" required>
+      <p class="error" id="error-password"></p>
+
+      <label for="confirmar">Confirmar contraseña:</label>
+      <input type="password" name="confirmar" id="confirmar" required>
+      <p class="error" id="error-confirmar"></p>
+
+      <button type="submit">Registrarse</button>
+    </form>
+
+    <% if (error) { %>
+      <p class="message" style="color:red;"><%= error %></p>
+    <% } %>
+    <% if (success) { %>
+      <p class="message" style="color:green;"><%= success %></p>
+    <% } %>
+
+    <a href="/" class="volver">⬅ Volver a inicio</a>
+  </div>
+
+  <script>
+    document.getElementById('registroForm').addEventListener('submit', function (e) {
+      let valid = true;
+
+      // Limpiar errores anteriores
+      document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+      const nombre = document.getElementById('nombre');
+      const email = document.getElementById('email');
+      const telefono = document.getElementById('telefono');
+      const password = document.getElementById('password');
+      const confirmar = document.getElementById('confirmar');
+
+      if (nombre.value.trim() === '') {
+        document.getElementById('error-nombre').textContent = 'El nombre es obligatorio.';
+        valid = false;
+      }
+
+      if (!email.value.match(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/)) {
+        document.getElementById('error-email').textContent = 'Correo electrónico inválido.';
+        valid = false;
+      }
+
+      if (telefono.value.trim().length < 8) {
+        document.getElementById('error-telefono').textContent = 'Número de teléfono inválido.';
+        valid = false;
+      }
+
+      if (password.value.length < 6) {
+        document.getElementById('error-password').textContent = 'La contraseña debe tener al menos 6 caracteres.';
+        valid = false;
+      }
+
+      if (password.value !== confirmar.value) {
+        document.getElementById('error-confirmar').textContent = 'Las contraseñas no coinciden.';
+        valid = false;
+      }
+
+      if (!valid) e.preventDefault();
+    });
+  </script>
+
+</body>
+</html>
+

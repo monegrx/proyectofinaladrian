@@ -1,0 +1,32 @@
+<h2>Reservar una cita</h2>
+
+<form method="POST" action="/reservar">
+  <label for="servicio">Servicio:</label>
+  <select name="servicio" required>
+    <option value="">Seleccione</option>
+    <option value="Corte">Corte</option>
+    <option value="Tinte">Tinte</option>
+    <option value="Afeitado">Afeitado</option>
+  </select><br>
+
+  <label for="estilista">Estilista:</label>
+  <select name="estilista" required>
+    <option value="">Seleccione</option>
+    <option value="Pedro">Pedro</option>
+    <option value="María">María</option>
+    <option value="Ana">Ana</option>
+  </select><br>
+
+  <label for="fecha">Fecha:</label>
+  <input type="date" name="fecha" required><br>
+
+  <label for="hora">Hora:</label>
+  <input type="time" name="hora" required><br><br>
+
+  <button type="submit">Reservar cita</button>
+</form>
+
+<br>
+<a href="/" class="boton-volver">⬅️ Volver a inicio</a>
+
+
